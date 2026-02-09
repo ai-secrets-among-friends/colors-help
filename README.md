@@ -100,6 +100,31 @@ Save multiple palettes with descriptive names ("dark mode attempt 2", "landing p
 4. Save it, copy the hex codes
 5. Paste into your app's theme config
 
+## MCP Server
+
+Palettable ships an MCP server so AI agents (Claude Code, etc.) can use the color tools directly.
+
+```bash
+npx palettable-mcp
+```
+
+Add to Claude Code (`~/.claude/settings.json`):
+
+```json
+{
+  "mcpServers": {
+    "palettable": {
+      "command": "npx",
+      "args": ["palettable-mcp"]
+    }
+  }
+}
+```
+
+Available tools: `generate_palette`, `get_harmonies`, `check_contrast`, `suggest_text_color`, `convert_color`, `analyze_palette`.
+
+See [`mcp/README.md`](mcp/README.md) for full details, or find it on [npm](https://www.npmjs.com/package/palettable-mcp).
+
 ## How It Works
 
 **Palette generation** distributes hues using the golden ratio (0.618...) for visually pleasing spacing, with randomized saturation (55-85%) and lightness (45-70%). Locked colors are preserved across regenerations.
